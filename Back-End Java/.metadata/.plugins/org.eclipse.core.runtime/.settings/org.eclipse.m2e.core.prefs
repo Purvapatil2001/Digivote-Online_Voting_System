@@ -1,0 +1,5 @@
+eclipse.m2.debugOutput=true
+eclipse.m2.offline=true
+eclipse.m2.queryCentralToIdentifyArtifact=true
+eclipse.m2.updateProjects=true
+eclipse.preferences.version=1

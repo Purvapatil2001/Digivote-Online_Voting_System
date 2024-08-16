@@ -1,0 +1,29 @@
+package com.app.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.app.entities.Executive;
+import com.app.dao.ExecutiveDAO;
+
+@Service
+public class ExecutiveServicesImpl implements ExecutiveServices {
+
+    @Autowired
+    private ExecutiveDAO executiveDAO;
+
+    @Override
+    public String registerExecutive(Executive executive) {
+        // Logic for registering an executive
+        executiveDAO.save(executive);
+        return "Executive Registered Successfully";
+    }
+
+    @Override
+    public Executive checkLogin(String ename, String password) {
+        // Logic for checking login credentials
+        // Here, you should hash the password and compare it with stored credentials
+        // For simplicity, this example assumes no hashing is done
+        return executiveDAO.findByEnameAndPassword(ename, password); // You need to define this method in the DAO
+    }
+}

@@ -1,0 +1,25 @@
+package com.app.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import com.app.dao.ExecutiveDAO;
+import com.app.entities.Executive;
+
+@Service
+public class ExecutiveServices {
+
+    @Autowired
+    private ExecutiveDAO executiveDao;
+
+    // Register a new executive
+    public Executive registerExecutive(Executive executive) {
+        return executiveDao.save(executive);
+    }
+
+    // Find an executive by name (for login)
+    public Executive findByEname(String ename) {
+        return executiveDao.findByEname(ename);
+    }
+
+    // Additional business logic can be added here
+}

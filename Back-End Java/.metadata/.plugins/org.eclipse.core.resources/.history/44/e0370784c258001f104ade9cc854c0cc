@@ -1,0 +1,83 @@
+package com.app.entities;
+
+import java.util.Random;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+@Entity
+@Table(name = "ee_data")
+public class Executive {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "eid", nullable = false, unique = true)
+    private String eid;
+    private String ename;
+    @Column(name = "password", nullable = false)
+	private String password;
+
+	private String estate;
+    @Enumerated(value = EnumType.STRING)
+    private AdminRoles roles;
+    
+
+    public Executive(@NotNull long eid, String ename, String estate, AdminRoles roles,String password) {
+        super();
+        Random random = new Random();
+		this.eid = "VID" +ename.charAt(0) + estate.charAt(0)
+				+ String.format("%05d", random.nextInt(98999) + 1000);
+        this.ename = ename;
+        this.estate = estate;
+        this.roles = roles;
+    	this.password = password;
+	}
+    
+    public Executive() {
+        super();
+    }
+
+    public long getEid() {
+        return eid;
+    }
+
+    public void setEid(String eid) {
+        this.eid = eid;
+    }
+
+    public String getEname() {
+        return ename;
+    }
+
+    public void setEname(String ename) {
+        this.ename = ename;
+    }
+
+    public String getEstate() {
+        return estate;
+    }
+
+    public void setEstate(String estate) {
+        this.estate = estate;
+    }
+
+    public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public AdminRoles getRoles() {
+        return roles;
+    }
+
+    public void setRoles(AdminRoles roles) {
+        this.roles = roles;
+    }
+}

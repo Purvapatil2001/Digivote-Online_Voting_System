@@ -1,0 +1,37 @@
+package com.app.services;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.app.entities.Executive;
+import com.app.dao.ExecutiveDAO;
+
+@Service
+public class ExecutiveServiceImpl implements ExecutiveServices {
+
+    @Autowired
+    private ExecutiveDAO executiveDAO;
+    @Override
+    public String registerExecutive(Executive executive) {
+        if (executive.getEname() == null || executive.getPassword() == null) {
+            throw new IllegalArgumentException("Name and Password must not be null");
+        }
+        
+        // Optionally check if the executive already exists
+        if (executiveDAO.findByEname(executive.getEname()) != null) {
+            throw new IllegalArgumentException("Executive with this name already exists");
+        }
+
+        executiveDAO.save(executive);
+        return "Executive Registered Successfully";
+    }
+
+
+    @Override
+    public Executive checkLogin(String eid, String password) {
+        // Logic for checking login credentials
+        // Here, you should hash the password and compare it with stored credentials
+        // For simplicity, this example assumes no hashing is done
+        return executiveDAO.findByEnameAndPassword(eid, password); // You need to define this method in the DAO
+    }
+}

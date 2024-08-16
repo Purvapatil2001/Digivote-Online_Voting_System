@@ -1,0 +1,68 @@
+package com.app.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ee_data")
+public class Executive {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long eid;
+	private String ename;
+	private String estate;
+	@Enumerated(value = EnumType.STRING)
+	private AdminRoles roles;
+	
+	public Executive(long eid, String ename, String estate, AdminRoles roles) {
+		super();
+		this.eid = eid;
+		this.ename = ename;
+		this.estate = estate;
+		this.roles = roles;
+	}
+
+	public Executive() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public long getEid() {
+		return eid;
+	}
+
+	public void setEid(long eid) {
+		this.eid = eid;
+	}
+
+	public String getEname() {
+		return ename;
+	}
+
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+
+	public String getEstate() {
+		return estate;
+	}
+
+	public void setEstate(String estate) {
+		this.estate = estate;
+	}
+
+	public AdminRoles getRoles() {
+		return roles;
+	}
+
+	public void setRoles(AdminRoles roles) {
+		this.roles = roles;
+	}
+	
+	
+}
